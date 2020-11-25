@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'snippets/css.html' %}
+
+   <div class="row">
+
+      {% for snippet in snippet_test %}
+      <div class="w3-panel w3-card" >
+        <h3 class="card-title" >{{ snippet.title}}</h3>
+        <h5 class="card-title" style="color: rgb(100, 6, 6);">{{ snippet.subject}}</h5>
+        <p class="card-text">{{ snippet.description }}</p>
+        <a href="{{snippet.url}}" class="btn btn-primary" target="_blank">URL</a>
+        <button onclick="document.getElementById('{{ snippet.id}}').style.display='block'" class="btn btn-primary">Snippet</button>
+        <h6 class="card-text" style="margin-top: inherit;">{{ snippet.date_published }}</h6>
+        <p class="card-text">{{ snippet.author }}</p>
+        <div id="{{ snippet.id}}" class="w3-modal">
+          <div class="w3-modal-content">
+            <div class="w3-container">
+              <span onclick="document.getElementById('{{ snippet.id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+              <p>{{ snippet.snippet }}</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        {% endfor %}
+
+    </div> 
+
+    
+{% endblock content %}
